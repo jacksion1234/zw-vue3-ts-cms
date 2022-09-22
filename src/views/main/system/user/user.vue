@@ -4,8 +4,13 @@
     <search-form
       :SearchConfigs="SearchConfigs"
       @handlerSearch="handlerSearch"
+      @handlerReset="handlerReset"
     ></search-form>
-    <page-content :tableContentConfig="tableContentConfig" pagename="users">
+    <page-content
+      ref="pageContent"
+      :tableContentConfig="tableContentConfig"
+      pagename="users"
+    >
       <template #handler>
         <el-button plain>操作</el-button>
       </template>
@@ -19,6 +24,7 @@ import SearchConfigs from './config/searchConfig'
 import tableContentConfig from './config/tableContentConfig'
 import SearchForm from '@/components/search-form/index'
 import PageContent from '@/components/page-content/src/page-content.vue'
+import { useSearchForm } from '@/hooks/use-search-form'
 
 // import { reactive } from 'vue'
 // export default defineComponent({
@@ -29,6 +35,7 @@ import PageContent from '@/components/page-content/src/page-content.vue'
 //     }
 //   }
 // })
+const [pageContentRef, handlerSearch, handlerReset] = useSearchForm()
 </script>
 
 <style scoped></style>
