@@ -7,7 +7,7 @@
       @handlerReset="handlerReset"
     ></search-form>
     <page-content
-      ref="pageContent"
+      ref="pageContentRef"
       :tableContentConfig="tableContentConfig"
       pagename="users"
     >
@@ -35,7 +35,7 @@ import { useSearchForm } from '@/hooks/use-search-form'
 //     }
 //   }
 // })
-const [pageContentRef, handlerSearch, handlerReset] = useSearchForm()
+const [handlerSearch, handlerReset] = useSearchForm()
 </script>
 
 <style scoped></style>

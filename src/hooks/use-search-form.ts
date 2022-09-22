@@ -15,5 +15,5 @@ export function useSearchForm() {
     pageContentRef.value?.getListData()
   }
   console.log('pageContentRef', pageContentRef)
-  return [pageContentRef, handlerSearch, handlerReset]
+  return [handlerSearch, handlerReset]
 }
