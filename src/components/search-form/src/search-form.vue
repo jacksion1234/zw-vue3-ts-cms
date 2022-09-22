@@ -31,18 +31,21 @@ const props = defineProps({
     }
   }
 })
+const emits = defineEmits(['handlerSearch', 'handlerReset'])
 const formItems = props.SearchConfigs?.formItems ?? []
 // 此处如果使用reactive来包装对象，则会导致子页面改变数据，无法触发父页面数据同步改变的问题
 const formData = ref(getFormModel(formItems))
 const handleResetClick = () => {
   console.log(formData)
   for (const key in formData.value) {
-    console.log(key)
+    // console.log(key)
     formData.value[key] = ''
   }
+  emits('handlerReset')
 }
 const search = () => {
-  console.log('触发查询')
+  console.log('触发查询', formData.value)
+  emits('handlerSearch', formData.value)
 }
 // watch(
 //   formData,

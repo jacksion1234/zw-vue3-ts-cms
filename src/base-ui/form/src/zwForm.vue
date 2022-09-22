@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, PropType } from 'vue'
+import { ref, watch, PropType, Ref } from 'vue'
 import { IFormItem } from '../types'
 const props = defineProps({
   modelValue: {
@@ -93,7 +93,7 @@ const props = defineProps({
 console.log(props)
 // 这一步相当于复制了一份传来的modelValue，以免接下来的操作会直接改变父页面传来的值
 const formData = ref({ ...props.modelValue })
-const labelPosition = ref('center')
+const labelPosition = ref('right') as any
 const emit = defineEmits(['update:modelValue'])
 watch(
   formData,

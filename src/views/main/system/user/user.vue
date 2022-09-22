@@ -1,11 +1,15 @@
 <template>
   <div class="user">
     <!-- <h2>user11</h2> -->
-    <search-form :SearchConfigs="SearchConfigs"></search-form>
-    <page-content
-      :tableContentConfig="tableContentConfig"
-      pagename="users"
-    ></page-content>
+    <search-form
+      :SearchConfigs="SearchConfigs"
+      @handlerSearch="handlerSearch"
+    ></search-form>
+    <page-content :tableContentConfig="tableContentConfig" pagename="users">
+      <template #handler>
+        <el-button plain>操作</el-button>
+      </template>
+    </page-content>
   </div>
 </template>
 

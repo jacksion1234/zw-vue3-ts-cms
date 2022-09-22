@@ -13,8 +13,12 @@ module.exports = defineConfig({
       entry: 'src/main.ts',
       // 模板来源
       template: 'public/index.html',
-      title: '后台管理系统'
+      title: '后台管理系统',
+      productionSourceMap: true // 生产环境下是否开启sourcemap
     }
+  },
+  devServer: {
+    hot: true
   },
   // publicPath: '/', // 改变相对路径，能使本地的包可以在本地访问资源，但是上到服务器中的包不要开启此配置
   // 直接通过CLI提供给我们的选项来配置

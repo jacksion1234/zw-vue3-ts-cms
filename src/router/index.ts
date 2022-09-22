@@ -37,7 +37,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-router.beforeEach((to, next) => {
+router.beforeEach((to) => {
   if (to.path !== '/login') {
     // 不是登录页，判断是否有token，如果有，则直接进入，没有，则返回登录页
     const token = LocalStorage.getToken()
