@@ -58,26 +58,36 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="sass">
-.login-panel
-  width: 320px
-  margin-bottom: 150px
-  .title
-    font-size: 32px
-    font-weight: bolder
-    color: #000
-    text-align: center
-    margin-bottom: 30px
-  .custom-tabs-label .el-icon
-    vertical-align: middle
-  .custom-tabs-label span
-    vertical-align: middle
-    margin-left: 4px
-  .account-control
-    margin-top: 10px
-    display: flex
-    justify-content: space-between
-  .login-btn
-    width: 100%
-    margin-top: 10px
+<style scoped lang="scss">
+.login-panel {
+  width: 320px;
+  margin-bottom: 150px;
+  .title {
+    font-size: 32px;
+    font-weight: bolder;
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .custom-tabs-label .el-icon {
+    vertical-align: middle;
+  }
+
+  .custom-tabs-label span {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  .account-control {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .login-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
 </style>

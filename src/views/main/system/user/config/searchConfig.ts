@@ -5,43 +5,39 @@ const searchConfigs = {
   },
   formItems: [
     {
-      field: 'sport',
+      field: 'realname',
       type: 'input',
-      label: '运动',
+      label: '真实姓名',
       otherOptions: {
-        placeholder: '请输入运动名称'
-      }
-    },
-    {
-      field: 'id',
-      type: 'input',
-      label: 'id',
-      otherOptions: {
-        placeholder: '请输入id'
+        placeholder: '请输入真实姓名'
       }
     },
     {
       field: 'name',
       type: 'input',
-      label: '姓名',
+      label: '用户名',
       otherOptions: {
-        placeholder: '请输入姓名'
+        placeholder: '请输入用户名'
       }
     },
     {
-      field: 'age',
+      field: 'cellphone',
       type: 'input',
-      label: '年龄',
+      label: '联系电话',
       otherOptions: {
-        placeholder: '请输入年龄'
+        placeholder: '请输入联系电话'
       }
     },
     {
-      field: 'birthday',
-      type: 'datepicker',
-      label: '生日',
+      field: 'enable',
+      type: 'select',
+      label: '状态',
+      options: [
+        { title: '启用', value: 1 },
+        { title: '禁用', value: 0 }
+      ],
       otherOptions: {
-        placeholder: '请输入生日'
+        placeholder: '请选择用户状态'
       }
     }
   ]

@@ -26,16 +26,7 @@ import SearchForm from '@/components/search-form/index'
 import PageContent from '@/components/page-content/src/page-content.vue'
 import { useSearchForm } from '@/hooks/use-search-form'
 
-// import { reactive } from 'vue'
-// export default defineComponent({
-//   name: 'user',
-//   setup() {
-//     return {
-//       HZWForm
-//     }
-//   }
-// })
-const [handlerSearch, handlerReset] = useSearchForm()
+const [pageContentRef, handlerSearch, handlerReset] = useSearchForm()
 </script>
 
 <style scoped></style>

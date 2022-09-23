@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bread-crumb">
     <el-breadcrumb separator="/">
       <template v-for="item in breadcrumbs" :key="item.path">
         <el-breadcrumb-item :to="{ path: item.path }">{{
@@ -21,4 +21,8 @@ defineProps({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.bread-crumb {
+  margin-left: 20px;
+}
+</style>

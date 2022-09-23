@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { AxiosInstance } from 'axios'
 import { ZWRequestConfig, ZWRequestInterceptors } from './types'
-import { ElLoading } from 'element-plus'
-import { ElMessage } from 'element-plus'
+import { ElLoading, ElMessage } from 'element-plus'
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 
 const DEFAULT_LOADING = true
@@ -30,9 +29,11 @@ class ZWRequest {
       (config) => {
         // console.log('共有的请求时成功拦截')
         if (this.showLoading) {
+          console.log('加载动画')
           this.loading = ElLoading.service({
             background: 'rgba(0, 0, 0, 0.6)',
             text: '加载中',
+            lock: true,
             fullscreen: true
           })
         }
@@ -45,7 +46,9 @@ class ZWRequest {
     )
     this.instance.interceptors.response.use(
       (res) => {
-        this.loading?.close()
+        setTimeout(() => {
+          this.loading?.close()
+        }, 300)
         // console.log('共有的返回时成功的拦截')
         const data = res.data
         if (data.returnCode === '20001') {

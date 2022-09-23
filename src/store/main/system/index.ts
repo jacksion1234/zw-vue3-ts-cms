@@ -27,7 +27,7 @@ const systemStore: Module<ISystemType, IRootState> = {
       const url = `${pagename}/list`
 
       const res = await getPageListData(url, queryInfo)
-      console.log('查询结果', res)
+      // console.log('查询结果', res)
       const { list, totalCount } = res.data
       const savePageName =
         pagename.slice(0, 1).toUpperCase() + pagename.slice(1)

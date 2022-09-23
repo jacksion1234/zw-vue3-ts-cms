@@ -1,9 +1,9 @@
 const tableContentConfig = {
   title: '用户列表',
+  childrenProps: {},
   tableColumn: [
     { prop: 'realname', label: '真实姓名', minWidth: '120px' },
-    { prop: 'id', label: 'id', minWidth: '120px' },
-    { prop: 'name', label: '姓名', minWidth: '120px' },
+    { prop: 'name', label: '用户名', minWidth: '120px' },
     { prop: 'cellphone', label: '联系电话', minWidth: '120px' },
     {
       prop: 'createAt',

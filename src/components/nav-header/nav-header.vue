@@ -36,9 +36,10 @@ const breadcrumbs = computed(() => {
 })
 </script>
 
-<style scoped lang="sass">
-.nav-header
-  height: 100%
-  display: flex
-  align-items: center
+<style scoped lang="scss">
+.nav-header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 </style>

@@ -94,41 +94,47 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass" scoped>
-.nav-menu
-  height: 100%
-  background-color: #001529
-  .logo
-    display: flex
-    height: 28px
-    padding: 12px 10px 8px 10px
-    flex-direction: row
-    justify-content: flex-start
-    align-items: center
+<style lang="scss" scoped>
+.nav-menu {
+  height: 100%;
+  background-color: #001529;
+  .logo {
+    display: flex;
+    height: 28px;
+    padding: 12px 10px 8px 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 
-    .img
-      height: 100%
-      margin: 0 10px
+    .img {
+      height: 100%;
+      margin: 0 10px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+    }
+  }
 
+  .el-menu {
+    border-right: none;
+    .el-menu--inline {
+      background-color: #fff !important;
+    }
+  }
 
-    .title
-      font-size: 16px
-      font-weight: 700
-      color: white
+  .el-menu--inline {
+    background-color: #001529 !important;
+  }
 
-  .el-menu
-    border-right: none
-    .el-menu--inline
-      background-color: #fff !important
-
-
-  .el-menu--inline
-    background-color: #001529 !important
-
-  .el-sub-menu
-    background-color: #001529 !important
+  .el-sub-menu {
+    background-color: #001529 !important;
     // 二级菜单 ( 默认背景 )
-    .el-menu-item
-      padding-left: 50px !important
-      background-color: #0c2135 !important
+    .el-menu-item {
+      padding-left: 50px !important;
+      background-color: #0c2135 !important;
+    }
+  }
+}
 </style>

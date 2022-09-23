@@ -18,14 +18,15 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="sass">
-.login
-  width: 100%
-  height: 100%
-  display: flex
-  justify-content: center
-  align-items: center
-  background-image: url('~@/assets/img/winterVillage.jpeg')
-  background-size: 100% 100%
-  background-repeat: no-repeat
+<style scoped lang="scss">
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('~@/assets/img/winterVillage.jpeg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
 </style>

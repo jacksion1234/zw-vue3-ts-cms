@@ -43,20 +43,24 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="sass">
-.main
-  width: 100%
-  height: 100%
-  background-color: #f4f4f4
-  .main-content
-    width: 100%
-    height: 100%
-    .el-aside
-      transition: width 0.5s
-
-    .page
-      height: 100%
-      .page-header
-        height: 48px
-        background-color: #fff
+<style scoped lang="scss">
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4;
+  .main-content {
+    width: 100%;
+    height: 100%;
+    .el-aside {
+      transition: width 0.5s;
+    }
+    .page {
+      height: 100%;
+      .page-header {
+        height: 48px;
+        background-color: #fff;
+      }
+    }
+  }
+}
 </style>

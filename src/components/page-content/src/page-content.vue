@@ -1,6 +1,11 @@
 <template>
   <div class="page-content">
-    <zw-table :tableData="tableData" v-bind="tableContentConfig">
+    <zw-table
+      :tableData="tableData"
+      :tableCount="tableCount"
+      v-bind="tableContentConfig"
+      v-model:page="pageInfo"
+    >
       <template #header>
         <el-button type="primary">新增用户</el-button>
       </template>
@@ -39,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import zwTable from '@/base-ui/table'
 import { useStore } from 'vuex'
 const props = defineProps({
@@ -51,13 +56,16 @@ const props = defineProps({
     type: String
   }
 })
+
 const store = useStore()
+const pageInfo = ref({ currentPage: 1, pageSize: 10 })
+watch(pageInfo, () => getListData())
 const getListData = (queryInfo = {}) => {
   store.dispatch('system/getPageListAction', {
     pagename: props.pagename,
     queryInfo: {
-      offset: 1,
-      size: 10,
+      offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
+      size: pageInfo.value.pageSize,
       ...queryInfo
     }
   })
@@ -65,6 +73,9 @@ const getListData = (queryInfo = {}) => {
 getListData()
 const tableData = computed(() => {
   return store.getters['system/pageListData'](props.pagename)
+})
+const tableCount = computed(() => {
+  return store.getters['system/pageListCount'](props.pagename)
 })
 const otherSlotNames = props.tableContentConfig.tableColumn?.filter(
   (column: any) => {
@@ -76,6 +87,7 @@ const otherSlotNames = props.tableContentConfig.tableColumn?.filter(
   }
 )
 console.log('soltNames', otherSlotNames)
+defineExpose({ getListData })
 </script>
 
 <style scoped>
