@@ -35,7 +35,7 @@ const loginModule: Module<LoginType, any> = {
     }
   },
   actions: {
-    async loginAction({ commit }, payload: IAccount) {
+    async loginAction({ commit, dispatch }, payload: IAccount) {
       console.log('调用loginAction', payload)
       // 1.实现登录逻辑
       const result = await login(payload)
@@ -44,6 +44,9 @@ const loginModule: Module<LoginType, any> = {
       // 在本地保存token
       LocalCache.saveToken(token)
       // login
+
+      // 请求初始信息(加{ root: true }是为了能调到到全局的action方法)
+      dispatch('getInitDataAction', null, { root: true })
 
       // 2.请求用户信息
       const userInfoResult = await getUserInfo(id)
@@ -63,10 +66,11 @@ const loginModule: Module<LoginType, any> = {
       router.push('/main')
     },
     // 为了刷新时回显vuex中存的值
-    loadLocalStorage({ commit }) {
+    loadLocalStorage({ commit, dispatch }) {
       const token = LocalCache.getToken()
       if (token) {
         commit('saveToken', token)
+        dispatch('getInitDataAction', null, { root: true })
       }
       const userInfo = LocalCache.getCache('userInfo')
       if (userInfo) {

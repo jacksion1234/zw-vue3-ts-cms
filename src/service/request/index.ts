@@ -29,7 +29,7 @@ class ZWRequest {
       (config) => {
         // console.log('共有的请求时成功拦截')
         if (this.showLoading) {
-          console.log('加载动画')
+          // console.log('加载动画')
           this.loading = ElLoading.service({
             background: 'rgba(0, 0, 0, 0.6)',
             text: '加载中',
@@ -48,7 +48,7 @@ class ZWRequest {
       (res) => {
         setTimeout(() => {
           this.loading?.close()
-        }, 300)
+        }, 100)
         // console.log('共有的返回时成功的拦截')
         const data = res.data
         if (data.returnCode === '20001') {

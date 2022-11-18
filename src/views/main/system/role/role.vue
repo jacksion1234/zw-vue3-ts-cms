@@ -1,17 +1,30 @@
 <template>
   <div class="role">
-    <h2>role</h2>
+    <el-form :model="formData" :rules="rules" status-icon>
+      <el-form-item label="用户名" prop="name">
+        <el-input v-model="formData.name" />
+      </el-form-item>
+      <el-form-item label="真实姓名">
+        <el-input v-model="formData.realname" />
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { reactive } from 'vue'
 
-export default defineComponent({
-  name: 'role',
-  setup() {
-    return {}
-  }
+const formData = reactive({
+  name: '',
+  realname: ''
+})
+const rules = reactive({
+  name: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' }
+  ],
+  realname: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' }
+  ]
 })
 </script>
 

@@ -9,9 +9,13 @@ import '../src/assets/css/index.scss'
 import Global from './global/index'
 
 const app = createApp(App)
-recoverStore()
+// 注册一些全局设置
 app.use(Global)
-app.use(store).use(router).mount('#app')
+app.use(store)
+recoverStore()
+app.use(router)
+
+app.mount('#app')
 // ZWRequest.request({
 //   url: '/post',
 //   method: 'POST',

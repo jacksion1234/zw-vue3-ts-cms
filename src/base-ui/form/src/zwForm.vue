@@ -4,24 +4,34 @@
       <slot name="header"></slot>
     </div>
     <el-form
+      ref="baseFormRef"
       :label-position="labelPosition"
       :label-width="labelWidth"
       :model="formData"
+      :rules="rules"
+      status-icon
     >
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
-            <el-form-item :label="item.label" :style="itemLayout">
+            <el-form-item
+              :label="item.label"
+              :style="itemLayout"
+              v-if="!item.isHidden"
+              :prop="item.field"
+            >
               <template
                 v-if="item.type === 'input' || item.type === 'password'"
               >
                 <el-input
+                  :placeholder="item.placeholder"
                   v-model="formData[item.field]"
                   v-bind="item.otherOptions"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
+                  :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
                   v-model="formData[item.field]"
@@ -55,8 +65,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, PropType, Ref } from 'vue'
+import { ref, watch, PropType } from 'vue'
 import { IFormItem } from '../types'
+// import type { FormRules } from 'element-plus'
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -65,6 +76,9 @@ const props = defineProps({
   formItems: {
     type: Array as PropType<IFormItem[]>,
     default: () => []
+  },
+  rules: {
+    type: Object
   },
   colLayout: {
     type: Object,
@@ -91,22 +105,28 @@ const props = defineProps({
     }
   }
 })
+
 console.log(props)
 // 这一步相当于复制了一份传来的modelValue，以免接下来的操作会直接改变父页面传来的值
 const formData = ref({ ...props.modelValue })
+console.log('子页复制的formData', formData)
+
 const labelPosition = ref('right') as any
 const emit = defineEmits(['update:modelValue'])
 watch(
   formData,
   (value) => {
     console.log('formData改变了')
-
     emit('update:modelValue', value)
   },
   {
     deep: true
   }
 )
+const baseFormRef = ref()
+defineExpose({
+  baseFormRef
+})
 </script>
 
 <style scoped>

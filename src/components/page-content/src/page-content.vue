@@ -7,7 +7,7 @@
       v-model:page="pageInfo"
     >
       <template #header>
-        <el-button type="primary">新增用户</el-button>
+        <el-button type="primary" @click="createNewUser">新增用户</el-button>
       </template>
       <template #enable="{ row }">
         <el-button
@@ -26,14 +26,16 @@
       </template>
       <!-- 嵌套slot，可实现更上一级的页面自定义插槽内容 -->
       <template
-        #[slotItem.slotName]="{ row }"
         v-for="slotItem in otherSlotNames"
         :key="slotItem.prop"
+        #[slotItem.slotName]="{ row }"
       >
         <template v-if="slotItem.slotName">
           <slot :name="slotItem.slotName" :row="row">
             <template v-if="slotItem.slotName === 'handler'">
-              <el-button link size="small">编辑</el-button>
+              <el-button link size="small" @click="editBtnClick(row)"
+                >编辑</el-button
+              >
               <el-button link size="small" type="danger">删除</el-button>
             </template>
           </slot>
@@ -56,6 +58,7 @@ const props = defineProps({
     type: String
   }
 })
+const emits = defineEmits(['newAddBtnClick', 'editBtnClick'])
 
 const store = useStore()
 const pageInfo = ref({ currentPage: 1, pageSize: 10 })
@@ -77,6 +80,9 @@ const tableData = computed(() => {
 const tableCount = computed(() => {
   return store.getters['system/pageListCount'](props.pagename)
 })
+const createNewUser = () => {
+  emits('newAddBtnClick')
+}
 const otherSlotNames = props.tableContentConfig.tableColumn?.filter(
   (column: any) => {
     if (column.slotName === 'header') return false
@@ -86,13 +92,16 @@ const otherSlotNames = props.tableContentConfig.tableColumn?.filter(
     return true
   }
 )
+const editBtnClick = (row: any) => {
+  emits('editBtnClick', row)
+}
 console.log('soltNames', otherSlotNames)
 defineExpose({ getListData })
 </script>
 
 <style scoped>
 .page-content {
-  padding: 20px;
+  padding: 10px 40px;
   background: #fff;
 }
 </style>

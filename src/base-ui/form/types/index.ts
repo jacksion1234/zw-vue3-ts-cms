@@ -9,6 +9,7 @@ export interface IFormItem {
   otherOptions?: any
   // select的选项
   options?: any[]
+  isHidden: boolean
 }
 export interface IForm {
   formItems: IFormItem[]

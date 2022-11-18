@@ -1,7 +1,11 @@
 import { Module } from 'vuex'
 import { ISystemType } from './types'
 import { IRootState } from '../../types'
-import { getPageListData } from '@/service/main/system/index'
+import {
+  getPageListData,
+  addNewUserData,
+  editUserData
+} from '@/service/main/system/index'
 const systemStore: Module<ISystemType, IRootState> = {
   namespaced: true,
   state() {
@@ -34,6 +38,35 @@ const systemStore: Module<ISystemType, IRootState> = {
       // 保存到vuex中
       commit(`save${savePageName}List`, list)
       commit(`save${savePageName}Count`, totalCount)
+    },
+    // 新增的通用方法
+    async newAddPageDataAction({ dispatch }, payload: any) {
+      const { pagename, newData } = payload
+      const url = `${pagename}`
+
+      // 调用新增方法
+      await addNewUserData(url, newData)
+      dispatch('getPageListAction', {
+        pagename,
+        queryInfo: {
+          size: 10,
+          offset: 0
+        }
+      })
+    },
+    async editPageDataAction({ dispatch }, payload: any) {
+      const { pagename, editData, id } = payload
+      const url = `${pagename}/${id}`
+
+      // 调用新增方法
+      await editUserData(url, editData)
+      dispatch('getPageListAction', {
+        pagename,
+        queryInfo: {
+          size: 10,
+          offset: 0
+        }
+      })
     }
   },
   getters: {

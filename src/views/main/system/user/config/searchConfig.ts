@@ -39,6 +39,21 @@ const searchConfigs = {
       otherOptions: {
         placeholder: '请选择用户状态'
       }
+    },
+    {
+      field: 'createAt',
+      type: 'datepicker',
+      label: '创建时间',
+      otherOptions: {
+        startPlaceholder: '请选择开始时间',
+        endPlaceholder: '请选择结束时间',
+        type: 'datetimerange',
+        valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        defaultTime: [
+          new Date(2000, 1, 1, 0, 0, 0),
+          new Date(2000, 2, 1, 23, 59, 59)
+        ]
+      }
     }
   ]
 }

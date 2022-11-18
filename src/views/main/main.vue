@@ -35,6 +35,13 @@ export default defineComponent({
       console.log('main页面接收')
       isCollapse.value = !isCollapse.value
     }
+    // const test = () => {
+    //   window.onbeforeunload = function (e) {
+    //     var a = window.event || e
+    //     a.returnValue = '是否确定关闭页面'
+    //   }
+    // }
+    // test()
     return {
       isCollapse,
       changCollapse
