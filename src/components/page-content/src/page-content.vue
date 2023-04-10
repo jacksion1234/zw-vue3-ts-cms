@@ -36,7 +36,13 @@
               <el-button link size="small" @click="editBtnClick(row)"
                 >编辑</el-button
               >
-              <el-button link size="small" type="danger">删除</el-button>
+              <el-button
+                link
+                size="small"
+                type="danger"
+                @click="deleteBtnClick(row)"
+                >删除</el-button
+              >
             </template>
           </slot>
         </template>
@@ -74,6 +80,19 @@ const getListData = (queryInfo = {}) => {
   })
 }
 getListData()
+const changeBackFun = () => {
+  const a = '12'
+  const b = '21'
+  return a + b
+}
+const changeRunFun = () => {
+  const a = 12
+  const b = 21
+  return a + b
+}
+console.log(changeBackFun())
+console.log(changeRunFun())
+
 const tableData = computed(() => {
   return store.getters['system/pageListData'](props.pagename)
 })
@@ -92,6 +111,12 @@ const otherSlotNames = props.tableContentConfig.tableColumn?.filter(
     return true
   }
 )
+const deleteBtnClick = (row: any) => {
+  store.dispatch('system/deletePageDataAction', {
+    pagename: props.pagename,
+    id: row.id
+  })
+}
 const editBtnClick = (row: any) => {
   emits('editBtnClick', row)
 }

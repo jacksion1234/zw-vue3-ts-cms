@@ -3,8 +3,9 @@ import { ISystemType } from './types'
 import { IRootState } from '../../types'
 import {
   getPageListData,
-  addNewUserData,
-  editUserData
+  addPageData,
+  editPageDta,
+  deletePageData
 } from '@/service/main/system/index'
 const systemStore: Module<ISystemType, IRootState> = {
   namespaced: true,
@@ -45,7 +46,7 @@ const systemStore: Module<ISystemType, IRootState> = {
       const url = `${pagename}`
 
       // 调用新增方法
-      await addNewUserData(url, newData)
+      await addPageData(url, newData)
       dispatch('getPageListAction', {
         pagename,
         queryInfo: {
@@ -54,12 +55,28 @@ const systemStore: Module<ISystemType, IRootState> = {
         }
       })
     },
+    // 删除的通用方法
+    async deletePageDataAction({ dispatch }, payload: any) {
+      const { pagename, id } = payload
+      const url = `${pagename}/${id}`
+
+      // 调用删除方法
+      await deletePageData(url)
+      dispatch('getPageListAction', {
+        pagename,
+        queryInfo: {
+          size: 10,
+          offset: 0
+        }
+      })
+    },
+    // 编辑的通用方法
     async editPageDataAction({ dispatch }, payload: any) {
       const { pagename, editData, id } = payload
       const url = `${pagename}/${id}`
 
       // 调用新增方法
-      await editUserData(url, editData)
+      await editPageDta(url, editData)
       dispatch('getPageListAction', {
         pagename,
         queryInfo: {

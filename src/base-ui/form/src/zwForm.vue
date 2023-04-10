@@ -110,7 +110,6 @@ console.log(props)
 // 这一步相当于复制了一份传来的modelValue，以免接下来的操作会直接改变父页面传来的值
 const formData = ref({ ...props.modelValue })
 console.log('子页复制的formData', formData)
-
 const labelPosition = ref('right') as any
 const emit = defineEmits(['update:modelValue'])
 watch(
